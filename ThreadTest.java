@@ -5,7 +5,7 @@ public class ThreadTest {
 	private static int count = 0;
 	
 	static String[] string1 = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen","fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "ninteen"};
-	 static String[] string2 = { "", "", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninty","hundred"};
+	 static String[] string2 = { "", "", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninty"};
 	
 	 public static void check(int number1,String string3)
 		{
@@ -30,7 +30,7 @@ public class ThreadTest {
 
 		            for (int i = 1; i <100; i++) {
 		                synchronized (sampleClass.tObject) {
-		                    incrementCount();
+		                    incrementCount();		                    
 		                    sampleClass.tObject.notify();
 		                    try {
 		                        sampleClass.tObject.wait();
@@ -71,9 +71,12 @@ public class ThreadTest {
 		}
 
 		private static void incrementCount() {
-
-			check(count++," ");
-		   }
+                int c = count++;
+                if(c<100)
+                {			
+                	check(c," ");
+		        }
+		    }
 		}
 
 		  class sampleClass {
